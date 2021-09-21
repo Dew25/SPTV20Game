@@ -21,16 +21,24 @@ public class SPTV20Game {
         //Программа загадывает число и просит пользователя отгадать
         //Если пользователь отгадал, он выиграл 
         //Иначе пользователь проиграл
-        int max = 5, min = 0;
+        int max = 5, min = 0, attempt = 1, userNum = -1;
+        Scanner scanner = new Scanner(System.in);
         Random random = new Random();
         int gameNum = random.nextInt(max - min + 1) + min;
         System.out.print("Программа загадала число от 0 до 5, угадай: ");
-        Scanner scanner = new Scanner(System.in);
-        int userNum = scanner.nextInt();
-        if(gameNum == userNum){
-            System.out.println("Ура! Ты выиграл!");
-        }else{
-            System.out.println(":( Ты проиграл. Задумано число: " + gameNum);
+        for(int i = 0; i < 3; i++){
+            userNum = scanner.nextInt();
+            if(gameNum == userNum){
+                System.out.println("Ура! Ты выиграл!");
+                break;
+            }else{
+                if(attempt < 3){
+                    System.out.print("Неправильно, попробуй еще раз: ");
+                }else{
+                    System.out.println(":( Ты проиграл. Задумано число: " + gameNum);
+                }
+            }
+            attempt++;
         }
     }
     
