@@ -24,22 +24,30 @@ public class SPTV20Game {
         int max = 5, min = 0, attempt = 1, userNum = -1;
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
-        int gameNum = random.nextInt(max - min + 1) + min;
-        System.out.print("Программа загадала число от 0 до 5, угадай: ");
-        for(int i = 0; i < 3; i++){
-            userNum = scanner.nextInt();
-            if(gameNum == userNum){
-                System.out.println("Ура! Ты выиграл!");
-                break;
-            }else{
-                if(attempt < 3){
-                    System.out.print("Неправильно, попробуй еще раз: ");
+        do{
+            int gameNum = random.nextInt(max - min + 1) + min;
+            System.out.print("Программа загадала число от 0 до 5, угадай: ");
+            for(int i = 0; i < 3; i++){
+                userNum = scanner.nextInt();
+                if(gameNum == userNum){
+                    System.out.println("Ура! Ты выиграл!");
+                    break;
                 }else{
-                    System.out.println(":( Ты проиграл. Задумано число: " + gameNum);
+                    if(attempt < 3){
+                        System.out.print("Неправильно, попробуй еще раз: ");
+                    }else{
+                        System.out.println(":( Ты проиграл. Задумано число: " + gameNum);
+                    }
                 }
+                attempt++;
             }
-            attempt++;
-        }
+            System.out.println("Введите \"0\" для выхода, или любой символ для подолжения игры: ");
+            int exit = scanner.nextInt();
+            if(exit == 0) {
+                System.out.println("Пока! :)");
+                break;
+            }
+        }while(true);
     }
     
 }
